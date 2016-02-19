@@ -19,18 +19,18 @@ void display(int array[], int length)
 
 void merge(int *left, int llength, int *right, int rlength)
 {
-	int *ltmp = (int *) malloc(llength * sizeof(int));
-	int *rtmp = (int *) malloc(rlength * sizeof(int));
+	int *ltemp = (int *) malloc(llength * sizeof(int));
+	int *rtemp = (int *) malloc(rlength * sizeof(int));
 
 
-	int *ll = ltmp;
-	int *rr = rtmp;
+	int *ll = ltemp;
+	int *rr = rtemp;
 
 	int *result = left;
 
 
-	memcpy(ltmp, left, llength * sizeof(int));
-	memcpy(rtmp, right, rlength * sizeof(int));
+	memcpy(ltemp, left, llength * sizeof(int));
+	memcpy(rtemp, right, rlength * sizeof(int));
 
 	while (llength > 0 && rlength > 0) {
 		if (*ll <= *rr) {
@@ -65,8 +65,8 @@ void merge(int *left, int llength, int *right, int rlength)
 		}
 
 	/* Release the memory used for the temporary arrays. */
-	free(ltmp);
-	free(rtmp);
+	free(ltemp);
+	free(rtemp);
 }
 
 void mergesort(int array[], int length)
