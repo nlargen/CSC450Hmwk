@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
 
 	display(shm_array, length);
 	mergesort(shm_array, length);
-	printf("done sorting\n");
+	printf("forked and sorted\n");
 	display(shm_array, length);
 
 	/* Detach from the shared memory now that we are done using it. */
