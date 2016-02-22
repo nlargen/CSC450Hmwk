@@ -7,6 +7,7 @@ void merge (int *a, int n, int m)
     int *x = malloc(n * sizeof (int));
     for (i = 0, j = m, k = 0; k < n; k++)
     {
+        //thank you csc250 for teaching me these
         x[k] = j == n ? a[i++]  : i == m  ? a[j++] : a[j] < a[i] ? a[j++] :  a[i++];
     }
     
@@ -17,13 +18,14 @@ void merge (int *a, int n, int m)
     free(x);
 }
  
-void mergesort (int *a, int n) 
+void sort (int *a, int n) 
 {
     if (n < 2)
         return;
+    //if the array is less than two why do anything 
     int m = n / 2;
-    mergesort(a, m);
-    mergesort(a + m, n - m);
+    sort(a, m);
+    sort(a + m, n - m);
     merge(a, n, m);
 }
  
@@ -42,7 +44,7 @@ int main ()
     {
         printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
     }
-    mergesort(a, n);
+    sort(a, n);
     for (i = 0; i < n; i++)
     {
         printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
