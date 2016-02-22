@@ -20,13 +20,13 @@ void merge (int *a, int n, int m)
     free(x);
 }
  
-void merge_sort (int *a, int n) 
+void mergesort (int *a, int n) 
 {
     if (n < 2)
         return;
     int m = n / 2;
-    merge_sort(a, m);
-    merge_sort(a + m, n - m);
+    mergesort(a, m);
+    mergesort(a + m, n - m);
     merge(a, n, m);
 }
  
@@ -45,7 +45,7 @@ int main ()
     {
         printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
     }
-    merge_sort(a, n);
+    mergesort(a, n);
     for (i = 0; i < n; i++)
     {
         printf("%d%s", a[i], i == n - 1 ? "\n" : " ");
