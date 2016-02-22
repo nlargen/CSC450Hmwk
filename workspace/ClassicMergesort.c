@@ -5,20 +5,17 @@ void mergesort(int arr[], int first, int second);
 
 void main(void)
 {
-    int array[10],n,i = 0; 
-    
-    clrscr(); 
-    printf("Enter number of elements to be sorted: ");
-    scanf(%d, &n); 
-    printf("\nEnter the elements to be sorted: \n");
-    for(i = 0; i < n ; i++)
+    int array[10]; 
+    int i = 0; 
+    for(; i< 10; i++)
     {
-        printf("\tArray[%d] = " i); 
-        scanf("%d", &array[i]); 
-        
+        array[i] = rand()%10; 
+        printf("%d", array[i]);
     }
-    mergesort(array, 0, n-1); 
-    
+    //printf("Enter number of elements to be sorted: ");
+    //scanf(%d, &n); 
+    //printf("\nEnter the elements to be sorted: \n");
+    mergesort(array, 0, 10); 
 }
 
 void mergesort(int arr[], int first, int second)
