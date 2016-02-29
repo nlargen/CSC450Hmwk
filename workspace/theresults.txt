@@ -1,0 +1,11 @@
+Gotta move x at: 2
+Gotta move x at: 3
+Gotta move x at: 5
+Gotta move x at: 6
+o is the weiner
+
+x
+xMove o at: 0
+Move o at: 7
+Move o at: 4
+Move o at: 1
