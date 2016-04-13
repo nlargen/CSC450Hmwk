@@ -41,7 +41,8 @@ int main(int argc, char** argv)
     int MAX_CLIENTS = 5;
     int* clients = malloc(MAX_CLIENTS * sizeof(int));
     int numberOfConnectedClients = 0;
-    
+    while(1)
+    {
     while(1)
     {
         listenfd = listen(sockfd, 100);
@@ -76,6 +77,10 @@ int main(int argc, char** argv)
             }
             break;
         }
+        //playing with multiple clients here with the while loop. will have to create something to handle each client individually
+        
+        break;
+    }
     //write(clientfd, buffer, sizeof(buffer));
 }
 

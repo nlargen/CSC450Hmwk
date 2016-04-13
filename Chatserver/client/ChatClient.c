@@ -29,7 +29,7 @@ int main(int argc, char** argv)
         char* server_reply = malloc(2000 * sizeof(char));
         while(1)
         {
-            error = recv(sockfd, server_reply, (2 * (sizeof(server_reply))), 0);
+            error = recv(sockfd, server_reply,  (sizeof(server_reply)), 0);
             if(error < 0)
             {
                 puts("recv failed");
@@ -41,7 +41,7 @@ int main(int argc, char** argv)
                 puts(server_reply);
                 //char* msg = server_reply;
                 char* msg = "i hear you";
-                send(sockfd , msg , strlen(msg) + 3 , 0);
+                send(sockfd , msg , strlen(msg) , 0);
                 break;
                
             }
