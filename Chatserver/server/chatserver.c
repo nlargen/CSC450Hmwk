@@ -62,7 +62,7 @@ int main(int argc, char** argv)
      while(1)
         {
            
-            errorc = recv(clientfd, server_reply, sizeof(server_reply), 0);
+            errorc = recv(clientfd, server_reply, (2 *(sizeof(server_reply))), 0);
             if(errorc < 0)
             {
                 puts("recv failed");
