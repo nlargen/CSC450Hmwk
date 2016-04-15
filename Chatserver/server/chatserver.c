@@ -7,7 +7,7 @@
 #include <string.h>
 
 void broadcast(char* msg, int* clients, int numClients);
-
+void replied(int clientfd, int* clients, int numClients);
 int main(int argc, char** argv)
 {
     uint16_t port = 3000;
@@ -43,8 +43,6 @@ int main(int argc, char** argv)
     int numberOfConnectedClients = 0;
     while(1)
     {
-    while(1)
-    {
         listenfd = listen(sockfd, 100);
     
         printf("Listening....\n");
@@ -54,16 +52,33 @@ int main(int argc, char** argv)
         clients[numberOfConnectedClients++] =  clientfd;
         char* message = "hello";
         broadcast(message, clients, numberOfConnectedClients);
-       
-         break;
+       replied(clientfd, clients, numberOfConnectedClients);
        
     }
+    
+        
+    
+    //write(clientfd, buffer, sizeof(buffer));
+}
+
+void broadcast(char* msg, int* clients, int numClients)
+{
+    int i;
+    for(i = 0; i < numClients; i++)
+    {
+       send(clients[i] , msg , (2 * (strlen(msg))) , 0);
+        printf("Sending to client: %d\n", clients + (i * sizeof(int)));
+        
+    }
+}
+void replied(int clientfd, int* clients, int numClients)
+{
     char* server_reply = malloc(2000 * sizeof(char));
-    int errorc;
-     while(1)
-        {
-           
-            errorc = recv(clientfd, server_reply, (2 *(sizeof(server_reply))), 0);
+       // int i; 
+        //for(i = 0; i < numClients; i++)
+        
+        int errorc;
+        errorc = recv(clientfd, server_reply, (4 * (sizeof(server_reply))), 0);
             if(errorc < 0)
             {
                 puts("recv failed");
@@ -73,24 +88,8 @@ int main(int argc, char** argv)
             {
                 puts("Reply received\n");
                 puts(server_reply);
-               
+               // broadcast(char* msg, )
+               broadcast(server_reply, clients, numClients);
             }
-            break;
-        }
-        //playing with multiple clients here with the while loop. will have to create something to handle each client individually
         
-        break;
-    }
-    //write(clientfd, buffer, sizeof(buffer));
-}
-
-void broadcast(char* msg, int* clients, int numClients)
-{
-    int i;
-    for(i = 0; i < numClients; i++)
-    {
-        send(*(clients + (i * sizeof(int))) , msg , strlen(msg) , 0);
-        printf("Sending to client: %d\n", clients + (i * sizeof(int)));
-        
-    }
 }
