@@ -27,17 +27,24 @@ void send_recv(int i, fd_set *master, int sockfd, int fdmax)
 	int nbytes_recvd, j;
 	char recv_buf[BUFSIZE], buf[BUFSIZE];
 	
-	if ((nbytes_recvd = recv(i, recv_buf, BUFSIZE, 0)) <= 0) {
-		if (nbytes_recvd == 0) {
+	if ((nbytes_recvd = recv(i, recv_buf, BUFSIZE, 0)) <= 0)
+	{
+		if (nbytes_recvd == 0)
+		{
 			printf("socket %d hung up\n", i);
-		}else {
+		}
+		else 
+		{
 			perror("recv");
 		}
 		close(i);
 		FD_CLR(i, master);
-	}else { 
+	}
+	else 
+	{ 
 	//	printf("%s\n", recv_buf);
-		for(j = 0; j <= fdmax; j++){
+		for(j = 0; j <= fdmax; j++)
+		{
 			send_to_all(j, i, sockfd, nbytes_recvd, recv_buf, master );
 		}
 	}	

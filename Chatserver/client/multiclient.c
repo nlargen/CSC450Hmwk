@@ -16,13 +16,18 @@ void send_recv(int i, int sockfd)
 	char recv_buf[BUFSIZE];
 	int nbyte_recvd;
 	
-	if (i == 0){
+	if (i == 0)
+	{
 		fgets(send_buf, BUFSIZE, stdin);
-		if (strcmp(send_buf , "quit\n") == 0) {
+		if (strcmp(send_buf , "quit\n") == 0)
+		{
 			exit(0);
-		}else
+		}
+		else
 			send(sockfd, send_buf, strlen(send_buf), 0);
-	}else {
+	}
+	else 
+	{
 		nbyte_recvd = recv(sockfd, recv_buf, BUFSIZE, 0);
 		recv_buf[nbyte_recvd] = '\0';
 		printf("%s\n" , recv_buf);
